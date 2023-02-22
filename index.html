@@ -17,6 +17,10 @@
 
         let computerChoice;
         let playerChoice;
+        let didPlayerWin;
+        let isTie;
+        let playerScore = 0;
+        let computerScore = 0;
 
         function getComputerChoice() {
             let randomNumber = Math.floor(Math.random() * 3) +1;
@@ -32,9 +36,24 @@
 
         }
 
+        /*
+        function randomPlayerChoice() {
+            let randomNumber = Math.floor(Math.random() * 3) +1;
+            if(randomNumber === 1) {
+                playerChoice = rock;
+            }
+            else if(randomNumber === 2) {
+                playerChoice = paper;
+            }
+            else {
+                playerChoice = scissors;
+            }
+        }
+        */
+
         function getPlayerChoice() {
 
-            playerChoice = prompt('Please enter a valid choice: "Rock", "Paper", or "Scissors"!!!!!!!!!!');
+            playerChoice = prompt('Please select rock, paper, or scissors');
             playerChoice=playerChoice.toLowerCase();
 
             if (playerChoice !== rock && playerChoice !== paper && playerChoice !== scissors){
@@ -43,15 +62,65 @@
             playerChoice=playerChoice.toLowerCase();
 
          }while(playerChoice !== rock && playerChoice !== paper && playerChoice !== scissors);
-
-         console.log(playerChoice);}
+            }
         }
+
+        function getWinner() {
+            if (playerChoice === computerChoice) {
+                isTie = true;
+                didPlayerWin = undefined;
+            }else if (playerChoice === rock && computerChoice === scissors || playerChoice === paper && computerChoice === rock || playerChoice === scissors && computerChoice === paper) {
+                isTie = false;
+                didPlayerWin = true;
+            }else {
+                isTie = false;
+                didPlayerWin = false;
+            }
+
+        }
+
+        function startGame() {
+            isGameStarted = true;
+        }
+
+
+
+        function game() {
+            console.log("Welcome to Rock-Paper-Scissors against an evil super computer. There will be five rounds, ties don't count. If you win more than the computer you leave with your life. Press any key to begin");
+
+
+                for(i=0; i < 5; i++) {
+                    getPlayerChoice();
+                    getComputerChoice();
+                    getWinner();
+                    if (isTie === true){
+                        console.log("it's a tie! try again.")
+                        i--;
+                    }else if (didPlayerWin === true) {
+                        console.log("You win! " + playerChoice + " beats " + computerChoice);
+                        playerScore++;
+                    }else if (isTie === false && didPlayerWin === false) {
+                        console.log("You lose! " + computerChoice + " beats " + playerChoice);
+                        computerScore++;
+                    }
+                }
+                if (playerScore > computerScore) {
+                    console.log("You have defeated the supercomputer! You may live");
+                }else {
+                    console.log("The supercomputer has defeated you, pay with you LIFE!");
+                }
+        }
+
+        game();
+
         
-        getPlayerChoice();
-       /* 
-       for (i = 0; i < 100; i++) {
+        
+       /*
+        for (i = 0; i < 100; i++) {
+        game();
         }
         */
+        
 
 
         
