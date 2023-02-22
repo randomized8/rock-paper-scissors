@@ -8,5 +8,54 @@
 </head>
 <body>
     <h1>Welcome to a deadly game of Rock Paper Scissors against an evil supercomputer!</h1>
+
+    <script>
+        
+        const rock = `rock`
+        const paper = `paper`
+        const scissors = `scissors`
+
+        let computerChoice;
+        let playerChoice;
+
+        function getComputerChoice() {
+            let randomNumber = Math.floor(Math.random() * 3) +1;
+            if(randomNumber === 1) {
+                computerChoice = rock;
+            }
+            else if(randomNumber === 2) {
+                computerChoice = paper;
+            }
+            else {
+                computerChoice = scissors;
+            }
+
+        }
+
+        function getPlayerChoice() {
+
+            playerChoice = prompt('Please enter a valid choice: "Rock", "Paper", or "Scissors"!!!!!!!!!!');
+            playerChoice=playerChoice.toLowerCase();
+
+            if (playerChoice !== rock && playerChoice !== paper && playerChoice !== scissors){
+         do {
+            playerChoice = prompt('Please enter a valid choice: "Rock", "Paper", or "Scissors"');
+            playerChoice=playerChoice.toLowerCase();
+
+         }while(playerChoice !== rock && playerChoice !== paper && playerChoice !== scissors);
+
+         console.log(playerChoice);}
+        }
+        
+        getPlayerChoice();
+       /* 
+       for (i = 0; i < 100; i++) {
+        }
+        */
+
+
+        
+
+    </script>
 </body>
 </html>
